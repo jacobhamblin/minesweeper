@@ -31,6 +31,10 @@ class Board
     @grid.flatten.none? { |cell| !cell.mine? && !cell.revealed? }
   end
 
+  def defeat?
+    @grid.flatten.any? { |cell| cell.mine? && cell.revealed? }
+  end
+
   def display_dev
     puts "\n"
     (0..@height-1).reverse_each do |row|
