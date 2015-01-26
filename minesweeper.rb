@@ -1,6 +1,6 @@
 ##TODO
-##1. victory?
-##2. defeat?
+##1. victory? -done? test
+##2. defeat? -done? test
 ##3. show a lot if zero
 ##4. identify flag input
 
@@ -23,6 +23,12 @@ class Minesweeper
   def run
     while true
       if @session.victory?
+        #change
+        puts "hi"
+      end
+      
+      if @session.defeat?
+        #change
         puts "hi"
       end
 
