@@ -11,7 +11,8 @@ class Board
     until i == @mines
       x = rand(@width)
       y = rand(@height)
-      unless @grid[x][y].mine? || [x,y] == initial_input
+      xi, yi = initial_input
+      unless @grid[x][y].mine? || ( x.between?(xi-1,xi+1) && y.between?(yi-1,yi+1) )
         @grid[x][y].set_mine
         i += 1
       end
@@ -28,7 +29,7 @@ class Board
   end
 
   def victory?
-    @grid.flatten.none? { |cell| !cell.mine? && !cell.revealed? }
+    @grid.flatten.none? { |cell| cell.empty? && !cell.revealed? }
   end
 
   def defeat?
@@ -49,7 +50,7 @@ class Board
           line << nearby_mines
         end
       end
-      puts line.join()
+      puts line.join
     end
   end
 
