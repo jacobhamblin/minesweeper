@@ -8,6 +8,10 @@ class Cell
   def mine?
     @mine
   end
+  
+  def empty?
+    !@mine
+  end
 
   def revealed?
     @state == 3

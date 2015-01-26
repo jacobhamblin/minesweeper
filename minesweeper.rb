@@ -23,13 +23,13 @@ class Minesweeper
   def run
     while true
       if @session.victory?
-        #change
-        puts "hi"
+        puts "You've won!"
+        break
       end
       
       if @session.defeat?
-        #change
-        puts "hi"
+        puts "Aw, that's too bad!"
+        break
       end
 
       @session.display
