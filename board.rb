@@ -28,7 +28,7 @@ class Board
   end
 
   def victory?
-    false
+    @grid.flatten.none? { |cell| !cell.mine? && !cell.revealed? }
   end
 
   def display_dev
