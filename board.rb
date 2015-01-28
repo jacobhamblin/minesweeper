@@ -19,9 +19,24 @@ class Board
     end
   end
 
+  def nearby_mines(x, y)
+    ([[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0]]).select do |x_adjust, y_adjust|
+      @grid[x + x_adjust][y + y_adjust].mine? if in_bounds(x + x_adjust, y + y_adjust)
+    end.count
+  end
+
+  def check_nearby_mines(x, y)
+    ([[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0]]).each do |x_adjust, y_adjust|
+      @grid[x + x_adjust][y + y_adjust].set_revealed if in_bounds(x + x_adjust, y + y_adjust) && nearby_mines(x, y) == 0
+      ##check_nearby_mines(x + x_adjust, y + y_adjust) if nearby_mines(x + x_adjust, y + y_adjust) == 0
+    end
+  end
+
   def sweep(x, y)
+    raise "Enter a number within the scope of your game board." unless in_bounds(x,y)
     add_mines([x, y]) unless @grid.flatten.any? { |cell| cell.revealed? }
     @grid[x][y].set_revealed
+    check_nearby_mines(x, y)
   end
 
   def in_bounds(col, row)
@@ -44,10 +59,7 @@ class Board
         if column[row].mine?
           line << :X
         else
-          nearby_mines = ([[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0]]).select do |x, y|
-            @grid[ci + x][row + y].mine? if in_bounds(ci+x, row+y)
-          end.count
-          line << nearby_mines
+          line << nearby_mines(ci,row)
         end
       end
       puts line.join
