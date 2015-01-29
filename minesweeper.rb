@@ -9,29 +9,43 @@ require_relative "cell"
 
 class Minesweeper
   def initialize
-    puts "Welcome to Minesweeper! What a party is in store for yoU! You're a lucky guy!\nInput a number for the desired width of the board.\n"
+    puts "\n\n\nWelcome to Minesweeper! What a party is in store for yoU! You're a lucky guy!"
+    run
+  end
+
+  def reset
+    puts 'Play again? y/n'
+    input = gets.chomp
+    case input
+    when "y"
+      run
+    else
+      puts "Thanks for playing!"
+      exit
+    end
+  end
+
+  def run
+    puts "\nInput a number for the desired width of the board.\n"
     width = get_number
     puts "Input the desired height for the board!\n"
     height = get_number
     puts "Then, tell us how many mines you want to populate the board.\n"
     mines = get_number
     @session = Board.new(mines, width, height)
-    run
-  end
-
-
-  def run
     while true
       if @session.victory?
+        puts "\n"
         @session.display
-        puts "You've won!"
-        break
+        puts "\nYou've won!"
+        reset
       end
       
       if @session.defeat?
+        puts "\n"
         @session.display
-        puts "Aw, that's too bad!"
-        break
+        puts "\nAw, that's too bad!"
+        reset
       end
 
       @session.display
