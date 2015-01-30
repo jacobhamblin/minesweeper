@@ -9,7 +9,7 @@ require_relative "cell"
 
 class Minesweeper
   def initialize
-    puts "\n\n\nWelcome to Minesweeper! What a party is in store for yoU! You're a lucky guy!"
+    puts "\n\n\nWelcome to Minesweeper!"
     run
   end
 
