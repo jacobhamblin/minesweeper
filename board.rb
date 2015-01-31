@@ -27,8 +27,12 @@ class Board
 
   def check_nearby_mines(x, y)
     ([[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0]]).each do |x_adjust, y_adjust|
-      @grid[x + x_adjust][y + y_adjust].set_revealed if in_bounds(x + x_adjust, y + y_adjust) && nearby_mines(x, y) == 0
-      #check_nearby_mines(x + x_adjust, y + y_adjust) if nearby_mines(x + x_adjust, y + y_adjust) == 0
+      next unless in_bounds(x + x_adjust, y + y_adjust)
+      cell = @grid[x + x_adjust][y + y_adjust]
+      next if cell.checked
+      cell.checked = true
+      cell.set_revealed if in_bounds(x + x_adjust, y + y_adjust) && nearby_mines(x, y) == 0
+      check_nearby_mines(x + x_adjust, y + y_adjust) if nearby_mines(x + x_adjust, y + y_adjust) == 0
     end
   end
 
@@ -37,6 +41,7 @@ class Board
     add_mines([x, y]) unless @grid.flatten.any? { |cell| cell.revealed? }
     @grid[x][y].set_revealed
     check_nearby_mines(x, y)
+    @grid.flatten.each {|cell| cell.checked = false }
   end
 
   def in_bounds(col, row)
