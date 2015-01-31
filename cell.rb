@@ -1,8 +1,11 @@
 class Cell
+  attr_accessor :checked
+  
   def initialize
     @mine = false
     #states: 1 = not revealed, 2 = flag, 3 = revealed
     @state = 1
+    @checked = false
   end
 
   def mine?
@@ -28,4 +31,5 @@ class Cell
   def set_mine
     @mine = true
   end
+  
 end
