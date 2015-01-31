@@ -1,8 +1,9 @@
 ##TODO
-##1. victory? -done? test
-##2. defeat? -done? test
-##3. show a lot if zero
+##1. victory? -done
+##2. defeat? -done
+##3. show a lot if zero -done
 ##4. identify flag input
+##5. make input easier
 
 require_relative "board"
 require_relative "cell"
