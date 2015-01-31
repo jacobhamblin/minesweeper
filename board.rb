@@ -30,13 +30,9 @@ class Board
       next unless in_bounds(x + x_adjust, y + y_adjust)
       cell = @grid[x + x_adjust][y + y_adjust]
       next if cell.checked
-      puts "checking #{x + x_adjust } #{y + y_adjust}"
       cell.checked = true
       cell.set_revealed if in_bounds(x + x_adjust, y + y_adjust) && nearby_mines(x, y) == 0
-      if nearby_mines(x + x_adjust, y + y_adjust) == 0
-        puts "found zero: #{x + x_adjust } #{y + y_adjust}"
-        check_nearby_mines(x + x_adjust, y + y_adjust)
-      end
+      check_nearby_mines(x + x_adjust, y + y_adjust) if nearby_mines(x + x_adjust, y + y_adjust) == 0
     end
   end
 
