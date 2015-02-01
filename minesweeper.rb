@@ -45,7 +45,7 @@ class Minesweeper
       if @session.defeat?
         puts "\n"
         @session.display
-        puts "\nAw, that's too bad!"
+        puts "\nA mine!\n\nGame over.\n"
         reset
       end
 
