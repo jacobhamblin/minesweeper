@@ -64,21 +64,6 @@ class Board
     end
   end
 
-  def display_dev
-    puts "\n"
-    (0..@height-1).reverse_each do |row|
-      line = []
-      @grid.each_with_index do |column, ci|
-        if column[row].mine?
-          line << :X
-        else
-          line << nearby_mines(ci,row)
-        end
-      end
-      puts line.join
-    end
-  end
-
   def display
     puts "-"*(@width+2)
     (0..@height-1).reverse_each do |row|
