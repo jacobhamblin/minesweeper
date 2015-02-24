@@ -27,11 +27,11 @@ class Minesweeper
   end
 
   def run
-    puts "\nInput a number for the desired width of the board.\n"
+    puts "\nInput a number for the desired width of the board."
     width = get_number
-    puts "Input the desired height for the board!\n"
+    puts "Input the desired height for the board!"
     height = get_number
-    puts "Then, tell us how many mines you want to populate the board.\n"
+    puts "Then, tell us how many mines you want to populate the board."
     mines = get_number
     @session = Board.new(mines, width, height)
     while true
@@ -46,14 +46,14 @@ class Minesweeper
         puts "\n"
         @session.reveal_mines
         @session.display
-        puts "\nA mine!\n\nGame over.\n"
+        puts "\nA mine!\n\nGame over."
         reset
       end
 
       @session.display
-      puts "What is the X coordinate of your next move?\n"
+      puts "What is the X coordinate of your next move?"
       x_coord = get_number
-      puts "What is the Y coordinate of your next move?\n"
+      puts "What is the Y coordinate of your next move?"
       y_coord = get_number
       @session.sweep(x_coord-1, y_coord-1)
 
@@ -69,12 +69,12 @@ class Minesweeper
         exit
       when /\d*/
         if input.to_i == 0
-          puts "wrong answer >:[\n"
+          puts "wrong answer >:["
           break
         end
         return input.to_i
       else
-        puts "Your input is invalid./n"
+        puts "Your input is invalid."
       end
     end
   end
